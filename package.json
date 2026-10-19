@@ -1,0 +1,33 @@
+{
+  "name": "anti-ai-design-skill",
+  "version": "1.0.0",
+  "description": "A portable Agent Skill that helps AI agents design and build distinctive, intentional, accessible interfaces instead of generic AI-generated ones.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.2.0"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "validate": "node scripts/validate-repository.mjs",
+    "validate:skill": "node scripts/validate-skill.mjs",
+    "validate:references": "node scripts/validate-references.mjs",
+    "validate:references:online": "node scripts/validate-references.mjs --online",
+    "package": "node scripts/package-skill.mjs",
+    "check": "npm run validate && npm test && npm run package"
+  },
+  "keywords": [
+    "agent-skill",
+    "skill",
+    "ui",
+    "ux",
+    "design",
+    "accessibility",
+    "claude",
+    "codex"
+  ],
+  "devDependencies": {
+    "yaml": "^2.9.1"
+  }
+}

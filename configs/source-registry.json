@@ -1,0 +1,929 @@
+{
+  "$comment": "Registry of external sources referenced by the skill. Every id must be documented in skills/anti-ai-design/references/reference-library.md (enforced by npm run validate:references). Verification statuses are defined in references/source-verification.md. 'reachable' means HTTP success with the expected page title; it does not mean the content supports any claim.",
+  "version": "1.0.0",
+  "statuses": [
+    "content-inspected",
+    "reachable",
+    "unverified",
+    "broken"
+  ],
+  "types": [
+    "normative-standard",
+    "official-guidance",
+    "implementation-guidance",
+    "research-education",
+    "example-product",
+    "pattern-gallery",
+    "component-library",
+    "tooling-documentation"
+  ],
+  "sources": [
+    {
+      "id": "wcag-22",
+      "name": "Web Content Accessibility Guidelines (WCAG) 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "type": "normative-standard",
+      "category": "accessibility",
+      "platforms": [
+        "web",
+        "all"
+      ],
+      "learn": "Testable success criteria for contrast, keyboard, focus, target size, reflow, errors, authentication.",
+      "informs": [
+        "contrast tokens",
+        "focus styles",
+        "target sizes",
+        "form error handling",
+        "reflow and text scaling"
+      ],
+      "caveats": "Normative for web content; applied to native apps by analogy and by some regulations. Success criteria levels (A/AA/AAA) matter for compliance claims.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Confirmed W3C Recommendation dated 12 December 2024; text of SC 1.3.1, 1.4.3, 1.4.4, 1.4.10, 1.4.11, 1.4.12, 2.1.1, 2.2.2, 2.3.3, 2.4.7, 2.4.11, 2.4.13, 2.5.7, 2.5.8, 3.3.1, 3.3.7, 3.3.8, 4.1.2."
+      }
+    },
+    {
+      "id": "wcag-22-understanding",
+      "name": "Understanding WCAG 2.2",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/",
+      "type": "implementation-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "web",
+        "all"
+      ],
+      "learn": "Intent, examples, and techniques behind each success criterion.",
+      "informs": [
+        "interpreting edge cases",
+        "exceptions such as inline targets"
+      ],
+      "caveats": "Informative, not normative.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "w3c-wai",
+      "name": "W3C Web Accessibility Initiative (WAI)",
+      "url": "https://www.w3.org/WAI/",
+      "type": "implementation-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Entry point to WAI standards, tutorials, and evaluation resources.",
+      "informs": [
+        "accessibility process",
+        "evaluation methods"
+      ],
+      "caveats": "Hub page; cite specific resources rather than the home page.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "wai-aria-apg",
+      "name": "WAI-ARIA Authoring Practices Guide (APG)",
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "type": "implementation-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Keyboard models and ARIA roles/states for custom widgets (tabs, menus, comboboxes, grids, dialogs).",
+      "informs": [
+        "custom control behavior",
+        "focus management"
+      ],
+      "caveats": "Patterns are examples; test with assistive technology. Prefer native elements first.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "mdn-accessibility",
+      "name": "MDN Web Docs: Accessibility",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility",
+      "type": "implementation-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Practical HTML/ARIA/CSS accessibility techniques and browser support.",
+      "informs": [
+        "semantic HTML",
+        "ARIA usage"
+      ],
+      "caveats": "Community-maintained reference; verify browser support tables for new features.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "mdn-prefers-reduced-motion",
+      "name": "MDN: prefers-reduced-motion",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion",
+      "type": "implementation-guidance",
+      "category": "motion",
+      "platforms": [
+        "web"
+      ],
+      "learn": "The CSS media feature for honoring reduced-motion user preferences.",
+      "informs": [
+        "reduced-motion variants"
+      ],
+      "caveats": "Reference for the API, not for which animations to reduce.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "web-dev-cls",
+      "name": "web.dev: Cumulative Layout Shift (CLS)",
+      "url": "https://web.dev/articles/cls",
+      "type": "implementation-guidance",
+      "category": "performance",
+      "platforms": [
+        "web"
+      ],
+      "learn": "How layout shift is measured and avoided (dimensions on media, reserved space).",
+      "informs": [
+        "image sizing",
+        "loading states",
+        "font loading"
+      ],
+      "caveats": "Google-authored; metric thresholds may change over time.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig",
+      "name": "Apple Human Interface Guidelines",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "watchos",
+        "tvos",
+        "visionos"
+      ],
+      "learn": "Apple's platform conventions, components, materials, accessibility, and patterns.",
+      "informs": [
+        "native navigation",
+        "controls",
+        "materials",
+        "platform behaviors"
+      ],
+      "caveats": "Updated frequently (current guidance describes Liquid Glass). Pages are client-rendered; cite specific pages and dates.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-accessibility",
+      "name": "Apple HIG: Accessibility",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+      "type": "official-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "watchos",
+        "tvos",
+        "visionos"
+      ],
+      "learn": "Control sizes per platform, contrast table, Dynamic Type, motion and transparency settings.",
+      "informs": [
+        "target sizes",
+        "contrast",
+        "text scaling"
+      ],
+      "caveats": "Numbers are recommendations for Apple platforms.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Read via Apple's documentation JSON. Control size table: iOS/iPadOS default 44x44 pt, minimum 28x28 pt; macOS default 28x28 pt, minimum 20x20 pt. Contrast table: 4.5:1 up to 17 pt; 3:1 at 18 pt or bold."
+      }
+    },
+    {
+      "id": "apple-hig-designing-for-macos",
+      "name": "Apple HIG: Designing for macOS",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-macos",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "macos"
+      ],
+      "learn": "Mac device characteristics and best practices: large displays with less nesting and modality, resizable windows, the menu bar, high-precision input, keyboard shortcuts, personalization.",
+      "informs": [
+        "window model",
+        "menu bar",
+        "density",
+        "keyboard support"
+      ],
+      "caveats": "High-level; follow links to component pages for specifics.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-designing-for-ios",
+      "name": "Apple HIG: Designing for iOS",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-ios",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "ios"
+      ],
+      "learn": "iPhone characteristics and best practices: limit onscreen controls, adapt to orientation, Dark Mode and Dynamic Type, place controls within reach, swipe to go back.",
+      "informs": [
+        "mobile hierarchy",
+        "reachability",
+        "appearance adaptation"
+      ],
+      "caveats": "High-level; follow links for component specifics.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-materials",
+      "name": "Apple HIG: Materials",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/materials",
+      "type": "official-guidance",
+      "category": "surfaces",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "visionos"
+      ],
+      "learn": "Liquid Glass as a functional layer for controls and navigation above content; don't use it in the content layer; use sparingly; standard materials for the content layer.",
+      "informs": [
+        "translucency decisions",
+        "glassmorphism audits"
+      ],
+      "caveats": "Apple-platform semantics; not a license for decorative glass on the web.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-motion",
+      "name": "Apple HIG: Motion",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "type": "official-guidance",
+      "category": "motion",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "visionos",
+        "watchos",
+        "tvos"
+      ],
+      "learn": "Add motion purposefully; make motion optional; brief and precise feedback; avoid motion on frequent interactions; let people cancel motion.",
+      "informs": [
+        "motion policy",
+        "reduced motion"
+      ],
+      "caveats": "No timing values are specified; timing guidance in this skill is our own starting point.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-sidebars",
+      "name": "Apple HIG: Sidebars",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sidebars",
+      "type": "official-guidance",
+      "category": "navigation",
+      "platforms": [
+        "macos",
+        "ipados",
+        "ios",
+        "visionos"
+      ],
+      "learn": "No more than two levels of hierarchy; let people hide the sidebar; avoid critical items at the bottom on macOS; consider a tab bar first on iOS/iPadOS.",
+      "informs": [
+        "sidebar navigation",
+        "split views"
+      ],
+      "caveats": "Change log shows a June 8, 2026 update; re-check before citing details.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-dark-mode",
+      "name": "Apple HIG: Dark Mode",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/dark-mode",
+      "type": "official-guidance",
+      "category": "color",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "tvos"
+      ],
+      "learn": "Respect the system appearance; avoid app-specific appearance settings; test with Increase Contrast and Reduce Transparency.",
+      "informs": [
+        "theme strategy"
+      ],
+      "caveats": "Apple platforms; web apps commonly offer a theme toggle, which is a different context.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-hig-buttons",
+      "name": "Apple HIG: Buttons",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/buttons",
+      "type": "official-guidance",
+      "category": "components",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "visionos",
+        "watchos",
+        "tvos"
+      ],
+      "learn": "Hit regions of at least 44x44 pt as a general rule (60x60 pt in visionOS); button placement conventions.",
+      "informs": [
+        "button sizing",
+        "toolbar items"
+      ],
+      "caveats": "Platform-specific sections differ; read the relevant one.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "apple-website",
+      "name": "Apple (apple.com)",
+      "url": "https://www.apple.com/",
+      "type": "example-product",
+      "category": "marketing",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Product-led marketing composition: large product imagery, short statements, pacing across a long page.",
+      "informs": [
+        "product-led hero",
+        "editorial pacing"
+      ],
+      "caveats": "Depends on world-class photography and a famous brand; principles transfer, budgets and assets often do not. Do not copy compositions or assets. Content not inspected in detail this session.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "url": "https://linear.app/",
+      "type": "example-product",
+      "category": "marketing",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Real product interface used as the main visual across sections (workspace, backlog, timeline, code review views).",
+      "informs": [
+        "product-led composition",
+        "showing real states"
+      ],
+      "caveats": "Its homepage, as inspected, also contains a three-column icon card row and testimonial cards: a reminder that references are not anti-pattern-free and that principles matter more than pages. Do not copy its dark aesthetic as a default (GEN-008).",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Automated fetch and summary of homepage structure; marketing pages change often."
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "url": "https://stripe.com/",
+      "type": "example-product",
+      "category": "marketing",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Evidence-led storytelling with concrete metrics and named customer case studies.",
+      "informs": [
+        "evidence-led sections",
+        "segmented narratives"
+      ],
+      "caveats": "As inspected (a localized French version was served), the homepage uses an animated wave background, logo carousels, and several card groups; metrics are Stripe's own claims. Learn the evidence principle, not the gradient.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Automated fetch and summary of homepage structure."
+      }
+    },
+    {
+      "id": "raycast",
+      "name": "Raycast",
+      "url": "https://www.raycast.com/",
+      "type": "example-product",
+      "category": "marketing",
+      "platforms": [
+        "web",
+        "macos"
+      ],
+      "learn": "Demonstrating a keyboard-first product through keyboard visuals and real UI screenshots of the launcher, AI chat, and extensions.",
+      "informs": [
+        "demonstrating interaction models",
+        "catalog sections for genuine collections (extensions)"
+      ],
+      "caveats": "Marketing page for a developer-leaning audience; patterns may not suit other audiences.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Automated fetch and summary of homepage structure."
+      }
+    },
+    {
+      "id": "mobbin",
+      "name": "Mobbin",
+      "url": "https://mobbin.com/",
+      "type": "pattern-gallery",
+      "category": "inspiration",
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "learn": "How shipped apps handle specific flows (onboarding, paywalls, settings, empty states).",
+      "informs": [
+        "flow research",
+        "pattern surveys"
+      ],
+      "caveats": "Commercial service; much content requires an account or subscription. Screenshots belong to the depicted products: study, don't reproduce. Popular patterns are not necessarily good ones.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "shadcn-ui",
+      "name": "shadcn/ui",
+      "url": "https://ui.shadcn.com/",
+      "type": "component-library",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Open-code component distribution: components are copied into the project so they can be fully customized; it describes itself as 'not a component library' but a way to build one.",
+      "informs": [
+        "React component starting points",
+        "owning component code"
+      ],
+      "caveats": "Default styling is widely used, so unmodified defaults read as generic. Apply the project's art direction to the copied components.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Docs introduction page."
+      }
+    },
+    {
+      "id": "material-design-3",
+      "name": "Material Design 3",
+      "url": "https://m3.material.io/",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "android",
+        "web",
+        "flutter"
+      ],
+      "learn": "Google's design system: components, color system (including dynamic color), typography, layout and adaptive guidance.",
+      "informs": [
+        "Android components",
+        "adaptive navigation",
+        "color roles"
+      ],
+      "caveats": "Client-rendered site; specific deep links change (one tested deep link returned 404 on 2026-10-19). Cite pages after opening them. Not every Android app must look like Material.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "android-design",
+      "name": "Android Developers: Design & Plan",
+      "url": "https://developer.android.com/design",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "android"
+      ],
+      "learn": "Android design entry point linking platform, layout, and quality guidance.",
+      "informs": [
+        "Android platform conventions"
+      ],
+      "caveats": "Hub page.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "android-accessibility",
+      "name": "Android Developers: Make apps more accessible",
+      "url": "https://developer.android.com/guide/topics/ui/accessibility/apps",
+      "type": "official-guidance",
+      "category": "accessibility",
+      "platforms": [
+        "android"
+      ],
+      "learn": "48x48 dp minimum touch targets; 4.5:1 contrast for small text and 3:1 otherwise; sp units for text; content descriptions.",
+      "informs": [
+        "touch targets",
+        "content descriptions",
+        "font scaling"
+      ],
+      "caveats": "Examples use Jetpack Compose; Views equivalents exist.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "android-window-size-classes",
+      "name": "Android Developers: Use window size classes",
+      "url": "https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes",
+      "type": "official-guidance",
+      "category": "layout",
+      "platforms": [
+        "android"
+      ],
+      "learn": "Width classes: compact <600 dp, medium 600-840, expanded 840-1200, large 1200-1600, extra-large >=1600; height classes compact <480, medium 480-900, expanded >=900.",
+      "informs": [
+        "adaptive layouts",
+        "navigation by window size"
+      ],
+      "caveats": "Large and extra-large classes require opting in via the adaptive library API.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "android-adaptive",
+      "name": "Android Developers: Get started with adaptive apps",
+      "url": "https://developer.android.com/develop/ui/compose/layouts/adaptive",
+      "type": "official-guidance",
+      "category": "layout",
+      "platforms": [
+        "android"
+      ],
+      "learn": "Adaptive app guidance for phones, foldables, tablets, desktop windows.",
+      "informs": [
+        "canonical layouts",
+        "multi-pane"
+      ],
+      "caveats": "Compose-focused.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "android-dynamic-color",
+      "name": "Android Developers: Dynamic color",
+      "url": "https://developer.android.com/develop/ui/views/theming/dynamic-colors",
+      "type": "official-guidance",
+      "category": "color",
+      "platforms": [
+        "android"
+      ],
+      "learn": "Letting users' wallpaper-derived colors personalize the app's palette.",
+      "informs": [
+        "brand vs personalization trade-off"
+      ],
+      "caveats": "Views page; availability depends on Android version and device.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "fluent-2",
+      "name": "Microsoft Fluent 2 Design System",
+      "url": "https://fluent2.microsoft.design/",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "web",
+        "windows",
+        "ios",
+        "android"
+      ],
+      "learn": "Microsoft's cross-platform design system, with resources for web (React), iOS, Android, and Windows.",
+      "informs": [
+        "Microsoft-ecosystem products",
+        "Windows desktop apps",
+        "Teams/Office add-ins"
+      ],
+      "caveats": "Homepage inspected only; read specific foundation pages before citing details.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Homepage only."
+      }
+    },
+    {
+      "id": "windows-app-design",
+      "name": "Microsoft Learn: Design Windows apps",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/design/",
+      "type": "official-guidance",
+      "category": "platform",
+      "platforms": [
+        "windows"
+      ],
+      "learn": "Windows app design guidance: layout, controls, navigation, input.",
+      "informs": [
+        "Windows conventions for cross-platform desktop apps"
+      ],
+      "caveats": "Hub page.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "nngroup",
+      "name": "Nielsen Norman Group",
+      "url": "https://www.nngroup.com/",
+      "type": "research-education",
+      "category": "ux-research",
+      "platforms": [
+        "all"
+      ],
+      "learn": "Research-informed UX articles on navigation, forms, IA, usability testing, and more.",
+      "informs": [
+        "rationales",
+        "critique vocabulary"
+      ],
+      "caveats": "Secondary source; articles vary in age and method. Cite specific articles with dates.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "nngroup-heuristics",
+      "name": "NN/g: 10 Usability Heuristics for User Interface Design",
+      "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+      "type": "research-education",
+      "category": "ux-research",
+      "platforms": [
+        "all"
+      ],
+      "learn": "Ten heuristics including visibility of system status, consistency and standards, error prevention, recognition rather than recall.",
+      "informs": [
+        "heuristic evaluation",
+        "audit lens"
+      ],
+      "caveats": "Heuristics guide expert review; they don't replace user research.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Heuristic names confirmed; page shows last update 30 January 2024."
+      }
+    },
+    {
+      "id": "electron-docs",
+      "name": "Electron documentation",
+      "url": "https://www.electronjs.org/docs/latest/",
+      "type": "tooling-documentation",
+      "category": "desktop",
+      "platforms": [
+        "desktop-cross-platform"
+      ],
+      "learn": "Web-technology desktop apps: menus, native dialogs, window APIs.",
+      "informs": [
+        "what native integration is available in Electron"
+      ],
+      "caveats": "Check API availability per OS.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "tauri",
+      "name": "Tauri",
+      "url": "https://tauri.app/",
+      "type": "tooling-documentation",
+      "category": "desktop",
+      "platforms": [
+        "desktop-cross-platform"
+      ],
+      "learn": "Desktop (and mobile) apps with a system webview and a Rust core; native menus and dialogs.",
+      "informs": [
+        "rendering differences across system webviews"
+      ],
+      "caveats": "System webviews differ per OS (rendering and feature support).",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "qt-docs",
+      "name": "Qt Documentation",
+      "url": "https://doc.qt.io/",
+      "type": "tooling-documentation",
+      "category": "desktop",
+      "platforms": [
+        "desktop-cross-platform"
+      ],
+      "learn": "Qt Widgets and Qt Quick, styles, and platform integration.",
+      "informs": [
+        "native-looking vs custom-rendered Qt UI"
+      ],
+      "caveats": "Version-specific; check the documentation for the Qt version in use.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "flutter-adaptive",
+      "name": "Flutter: Adaptive and responsive design",
+      "url": "https://docs.flutter.dev/ui/adaptive-responsive",
+      "type": "tooling-documentation",
+      "category": "layout",
+      "platforms": [
+        "desktop-cross-platform",
+        "android",
+        "ios"
+      ],
+      "learn": "Adapting Flutter apps across form factors and input types.",
+      "informs": [
+        "Flutter layout and platform adaptation"
+      ],
+      "caveats": "Flutter renders its own widgets; native look requires deliberate work.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "agent-skills-spec",
+      "name": "Agent Skills specification",
+      "url": "https://agentskills.io/specification",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "SKILL.md frontmatter rules: name 1-64 chars, lowercase letters/digits/hyphens, no leading/trailing/consecutive hyphens, must match the directory; description 1-1024 chars; optional license, compatibility, metadata, allowed-tools.",
+      "informs": [
+        "skill metadata validation"
+      ],
+      "caveats": "Individual products may support additional fields or apply stricter limits.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "claude-code-skills",
+      "name": "Claude Code Docs: Extend Claude with skills",
+      "url": "https://code.claude.com/docs/en/skills",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "Personal skills in ~/.claude/skills/<name>/SKILL.md, project skills in .claude/skills/<name>/SKILL.md, plugin skills in <plugin>/skills/<name>/; supporting files linked from SKILL.md load on demand; keep SKILL.md under 500 lines.",
+      "informs": [
+        "Claude Code installation"
+      ],
+      "caveats": "Claude Code-specific frontmatter fields are not portable.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "claude-platform-skills",
+      "name": "Claude Platform Docs: Agent Skills overview",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "Agent Skills on the Claude API and apps.",
+      "informs": [
+        "API usage of skills"
+      ],
+      "caveats": "Reachability checked only.",
+      "verification": {
+        "status": "reachable",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "claude-help-skills",
+      "name": "Claude Help Center: Use skills in Claude",
+      "url": "https://support.claude.com/en/articles/12512180-using-skills-in-claude",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "Upload a ZIP of the skill folder in Customize > Skills; requires code execution to be enabled.",
+      "informs": [
+        "claude.ai installation"
+      ],
+      "caveats": "Plan availability and UI paths change; re-check before documenting to users.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "codex-skills",
+      "name": "OpenAI: Build skills (Codex)",
+      "url": "https://learn.chatgpt.com/docs/build-skills",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "Codex scans $CWD/.agents/skills, $REPO_ROOT/.agents/skills, $HOME/.agents/skills, /etc/codex/skills, and bundled skills; invoke with /skills or by typing $ to mention a skill.",
+      "informs": [
+        "Codex installation"
+      ],
+      "caveats": "developers.openai.com/codex/skills redirected here (308) on 2026-10-19.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "openai-academy-skills",
+      "name": "OpenAI Academy: Skills",
+      "url": "https://academy.openai.com/public/resources/skills",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "ChatGPT skills use the SKILL.md format; can be built in ChatGPT or uploaded; selected automatically or by @-mentioning; exportable to other Agent Skills tools such as Codex.",
+      "informs": [
+        "ChatGPT usage"
+      ],
+      "caveats": "Does not state plan availability, accepted upload formats, or size limits.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19"
+      }
+    },
+    {
+      "id": "chatgpt-help-skills",
+      "name": "OpenAI Help Center: Skills in ChatGPT",
+      "url": "https://help.openai.com/en/articles/20001066-skills-in-chatgpt",
+      "type": "tooling-documentation",
+      "category": "skill-format",
+      "platforms": [
+        "agents"
+      ],
+      "learn": "Skills are available to eligible ChatGPT Business, Enterprise, Healthcare, and Edu users, subject to workspace settings; upload via Skills > Create > Upload from your computer; uploads are scanned and may be marked Needs Review or Blocked; skills can be shared with a workspace.",
+      "informs": [
+        "ChatGPT upload format"
+      ],
+      "caveats": "The page text inspected does not list accepted upload file formats or size limits. curl and some fetchers received HTTP 403; Node fetch received the page.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-19",
+        "notes": "Page text retrieved with Node fetch and read."
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$comment": "Platform guidance map. Paths are relative to skills/anti-ai-design/. Source ids must exist in configs/source-registry.json. Task routes must match the loading table in SKILL.md (enforced by tests).",
+  "version": "1.0.0",
+  "platforms": [
+    {
+      "id": "web",
+      "name": "Web",
+      "file": "platforms/web.md",
+      "load": ["references/layout-composition.md", "references/responsive-design.md", "references/accessibility.md"],
+      "sources": ["wcag-22", "wai-aria-apg", "mdn-accessibility", "web-dev-cls"],
+      "targetSize": "24x24 CSS px minimum (WCAG 2.5.8 AA)",
+      "navigationModel": "URLs; header and/or sidebar navigation; browser back/forward",
+      "textScaling": "rem units; 200% resize (WCAG 1.4.4); reflow at 320 CSS px (1.4.10)"
+    },
+    {
+      "id": "macos",
+      "name": "macOS",
+      "file": "platforms/macos.md",
+      "load": ["references/interaction-design.md", "references/accessibility.md", "references/design-principles.md"],
+      "sources": ["apple-hig", "apple-hig-designing-for-macos", "apple-hig-accessibility", "apple-hig-sidebars", "apple-hig-materials"],
+      "targetSize": "28x28 pt default, 20x20 pt minimum control size (Apple HIG Accessibility)",
+      "navigationModel": "Menu bar for all commands; sidebar, toolbar, split views, inspectors; windows",
+      "textScaling": "System text styles"
+    },
+    {
+      "id": "ios-ipados",
+      "name": "iOS and iPadOS",
+      "file": "platforms/ios-ipados.md",
+      "load": ["references/interaction-design.md", "references/accessibility.md", "references/responsive-design.md"],
+      "sources": ["apple-hig", "apple-hig-designing-for-ios", "apple-hig-accessibility", "apple-hig-buttons", "apple-hig-materials"],
+      "targetSize": "44x44 pt default, 28x28 pt minimum control size (Apple HIG Accessibility)",
+      "navigationModel": "Tab bar, navigation stack with edge-swipe back, sheets; sidebar on iPad",
+      "textScaling": "Dynamic Type via system text styles"
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "file": "platforms/android.md",
+      "load": ["references/interaction-design.md", "references/accessibility.md", "references/responsive-design.md"],
+      "sources": ["android-design", "android-accessibility", "android-window-size-classes", "android-adaptive", "android-dynamic-color", "material-design-3"],
+      "targetSize": "48x48 dp minimum (Android accessibility guidance)",
+      "navigationModel": "System back; navigation bar / rail / drawer adapted by window size class",
+      "textScaling": "sp units and user font scale"
+    },
+    {
+      "id": "desktop-cross-platform",
+      "name": "Cross-platform desktop",
+      "file": "platforms/desktop-cross-platform.md",
+      "load": ["platforms/macos.md", "references/interaction-design.md", "references/accessibility.md"],
+      "sources": ["electron-docs", "tauri", "qt-docs", "flutter-adaptive", "windows-app-design", "fluent-2"],
+      "targetSize": "Follow the host OS guidance",
+      "navigationModel": "Native application menus and platform shortcuts; window management",
+      "textScaling": "Depends on stack; verify OS text-size integration"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise and business interfaces",
+      "file": "platforms/enterprise-interfaces.md",
+      "load": ["references/spacing-and-density.md", "references/component-design.md", "references/accessibility.md", "references/layout-composition.md"],
+      "sources": ["nngroup-heuristics", "wcag-22", "wai-aria-apg"],
+      "targetSize": "Host platform guidance",
+      "navigationModel": "Shallow navigation by work area; search; saved views; keyboard shortcuts",
+      "textScaling": "Host platform guidance"
+    }
+  ],
+  "taskRoutes": [
+    { "task": "marketing-site", "files": ["references/art-direction.md", "references/layout-composition.md", "references/typography.md", "references/motion-design.md", "platforms/web.md", "references/anti-patterns.md"] },
+    { "task": "web-application", "files": ["references/component-design.md", "references/interaction-design.md", "references/spacing-and-density.md", "platforms/web.md", "references/accessibility.md"] },
+    { "task": "dense-admin", "files": ["references/layout-composition.md", "references/spacing-and-density.md", "references/component-design.md", "references/accessibility.md", "platforms/enterprise-interfaces.md"] },
+    { "task": "macos-app", "files": ["platforms/macos.md", "references/interaction-design.md", "references/accessibility.md", "references/design-principles.md"] },
+    { "task": "ios-app", "files": ["platforms/ios-ipados.md", "references/interaction-design.md", "references/accessibility.md", "references/responsive-design.md"] },
+    { "task": "android-app", "files": ["platforms/android.md", "references/interaction-design.md", "references/accessibility.md", "references/responsive-design.md"] },
+    { "task": "visual-audit", "files": ["references/anti-patterns.md", "references/design-critique.md", "workflows/audit-interface.md", "workflows/final-quality-gate.md"] },
+    { "task": "code-audit", "files": ["workflows/audit-existing-code.md", "references/anti-patterns.md", "references/accessibility.md"] },
+    { "task": "code-redesign", "files": ["workflows/improve-existing-interface.md", "workflows/implement-interface.md"] }
+  ]
+}

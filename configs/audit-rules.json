@@ -1,0 +1,267 @@
+{
+  "$comment": "Machine-readable audit rules. Identifiers here must appear in skills/anti-ai-design/references/anti-patterns.md (enforced by npm run validate). codeSignals are heuristic hints for locating candidates in markup; a hit is never a verdict, and visual judgment requires a capable model and, when possible, rendered evidence.",
+  "version": "1.0.0",
+  "categories": {
+    "A": { "id": "generic-ai-patterns", "name": "Generic AI patterns", "prefix": "GEN" },
+    "B": { "id": "visual-hierarchy", "name": "Visual hierarchy", "prefix": "HIE" },
+    "C": { "id": "usability", "name": "Usability", "prefix": "USA" },
+    "D": { "id": "accessibility", "name": "Accessibility", "prefix": "A11Y" },
+    "E": { "id": "technical-quality", "name": "Technical quality", "prefix": "TEC" }
+  },
+  "severityLevels": [
+    { "id": "critical", "rank": 4, "definition": "Blocks a core task or creates a serious accessibility or functional problem." },
+    { "id": "high", "rank": 3, "definition": "Materially damages usability, hierarchy, or visual coherence." },
+    { "id": "medium", "rank": 2, "definition": "Weakens quality or consistency but does not block the primary task." },
+    { "id": "low", "rank": 1, "definition": "A minor refinement or optional enhancement." }
+  ],
+  "evidenceTypes": [
+    { "id": "observed", "definition": "Directly seen in the provided screenshot, rendered interface, design file, or code." },
+    { "id": "inferred", "definition": "Deduced from partial evidence (e.g. a static screenshot implies but cannot prove missing focus states)." },
+    { "id": "not-assessable", "definition": "The available evidence cannot answer the question; state what evidence would." }
+  ],
+  "findingFields": ["id", "ruleId", "category", "severity", "location", "evidence", "evidenceType", "impact", "recommendation", "exampleCorrection"],
+  "rules": [
+    {
+      "id": "GEN-001",
+      "category": "A",
+      "title": "Automatic badge + headline + description stack",
+      "defaultSeverity": "medium",
+      "evidence": ["Eyebrow/pill/label above a large headline, followed by a short paragraph and optional CTA", "The same stack opens most sections", "Eyebrow restates the headline"],
+      "legitimateWhen": ["The label carries real navigational, status, date, or step information", "Used once, deliberately, where the hierarchy serves the content"],
+      "alternatives": ["Standalone specific headline", "Heading embedded in a demonstration or diagram", "Statement without supporting paragraph", "Compact heading followed directly by content", "Side-column heading beside long content"],
+      "references": ["references/anti-patterns.md", "references/layout-composition.md", "references/typography.md"],
+      "codeSignals": [
+        { "pattern": "class=\"[^\"]*\\b(badge|eyebrow|pill|kicker|overline)\\b[^\"]*\"[^>]*>[^<]*(<[^/][^>]*>[^<]*</[a-z0-9]+>[^<]*)?</[a-z0-9]+>\\s*<h[1-3]", "flags": "gi", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-002",
+      "category": "A",
+      "title": "Repetitive equal-weight feature card grid",
+      "defaultSeverity": "high",
+      "evidence": ["3-8 uniform cards with icon, title, one-sentence description", "Items of unequal importance given equal weight", "Generic icons", "Removing a card would go unnoticed"],
+      "legitimateWhen": ["Items are independent entities the user browses, compares, or selects", "Each card controls or links to something distinct", "Cards carry real, differing data", "The set is user- or data-driven (catalog, templates, plans, widgets)"],
+      "alternatives": ["Rank and demonstrate the top one or two; list the rest", "Timeline for processes", "Table for comparison", "Annotated screenshot for aspects of one workflow", "One strong proof point instead of many weak claims"],
+      "references": ["references/anti-patterns.md", "references/layout-composition.md", "references/component-design.md"],
+      "codeSignals": [
+        { "pattern": "class=\"[^\"]*\\b(feature-card|feature|card)\\b[^\"]*\"", "flags": "gi", "minCount": 4 }
+      ],
+      "exceptionSignals": [
+        { "pattern": "type=\"(radio|checkbox)\"|role=\"(radio|radiogroup|option|listbox|gridcell)\"|aria-(pressed|selected|checked)=", "flags": "gi" }
+      ]
+    },
+    {
+      "id": "GEN-003",
+      "category": "A",
+      "title": "Island mode / over-containerization",
+      "defaultSeverity": "high",
+      "evidence": ["Most content in floating rounded rectangles with own background, border, shadow", "Containers nested two or more levels", "Header, sidebar, and content each a separate floating island"],
+      "legitimateWhen": ["Overlays, popovers, dialogs", "Draggable or selectable objects", "Regions with independent scroll", "Widgets with their own data and controls (one level)"],
+      "alternatives": ["Remove outer containers; let alignment and background define regions", "Group with spacing", "Single divider or background shift between regions", "Rows and columns for dense data"],
+      "references": ["references/anti-patterns.md", "references/color-and-surfaces.md", "references/spacing-and-density.md"],
+      "codeSignals": [
+        { "pattern": "class=\"[^\"]*\\b(rounded-(xl|2xl|3xl)\\b[^\"]*\\bborder\\b|border\\b[^\"]*\\brounded-(xl|2xl|3xl))\\b[^\"]*\"", "flags": "gi", "minCount": 5 }
+      ]
+    },
+    {
+      "id": "GEN-004",
+      "category": "A",
+      "title": "Borders and shadows on everything",
+      "defaultSeverity": "medium",
+      "evidence": ["Most elements carry both border and shadow", "Separators duplicate spacing", "Shadows on static in-page content"],
+      "legitimateWhen": ["Form field edges", "Focus rings", "Table structure aiding scanning", "Overlays above content", "Items being dragged", "Selected state"],
+      "alternatives": ["One separation device per hierarchy level", "Delete all, re-add only where absence causes a real problem"],
+      "references": ["references/anti-patterns.md", "references/color-and-surfaces.md"],
+      "codeSignals": [
+        { "pattern": "\\bshadow-(sm|md|lg|xl|2xl)\\b|box-shadow\\s*:", "flags": "gi", "minCount": 6 }
+      ]
+    },
+    {
+      "id": "GEN-005",
+      "category": "A",
+      "title": "Default generic gradients",
+      "defaultSeverity": "medium",
+      "evidence": ["Purple-to-blue or pink-to-orange gradients on hero, headline text, buttons", "Blurred color blobs behind content", "Gradient unrelated to brand"],
+      "legitimateWhen": ["Gradient belongs to the established brand", "Gradient encodes information (scale, time, material)", "Text contrast verified across the gradient"],
+      "alternatives": ["Color derived from brand and content", "Flat confident color field", "Typography or imagery as the anchor"],
+      "references": ["references/anti-patterns.md", "references/color-and-surfaces.md"],
+      "codeSignals": [
+        { "pattern": "from-(purple|violet|indigo|fuchsia|pink)-\\d{2,3}[^\"]*to-(blue|indigo|cyan|sky|violet|purple|orange)-\\d{2,3}", "flags": "gi", "minCount": 1 },
+        { "pattern": "linear-gradient\\([^)]*(purple|violet|#7c3aed|#8b5cf6|#6366f1)", "flags": "gi", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-006",
+      "category": "A",
+      "title": "Excessive radii and pill shapes",
+      "defaultSeverity": "low",
+      "evidence": ["Large radii on tables, images, full-width sections", "Every button and tag is a pill", "Nested elements share outer radius"],
+      "legitimateWhen": ["Brand is genuinely soft or playful", "Platform conventions", "Pill shape consistently marks one component type"],
+      "alternatives": ["Small radius scale tied to size and role", "Nested radius = outer minus padding", "Square edges for document-like content"],
+      "references": ["references/anti-patterns.md", "references/color-and-surfaces.md", "references/design-systems.md"]
+    },
+    {
+      "id": "GEN-007",
+      "category": "A",
+      "title": "Repeated symmetrical section layouts",
+      "defaultSeverity": "medium",
+      "evidence": ["Every section centered and symmetrical", "Mechanical image-left/text-right alternation"],
+      "legitimateWhen": ["Content is genuinely parallel and consistency aids comparison"],
+      "alternatives": ["Structure per section from content", "Vary scale, width, density by importance", "Asymmetry where one element should dominate"],
+      "references": ["references/anti-patterns.md", "references/layout-composition.md"]
+    },
+    {
+      "id": "GEN-008",
+      "category": "A",
+      "title": "Generic SaaS visual identity",
+      "defaultSeverity": "high",
+      "evidence": ["Dark navy/black with one neon accent", "Same sans at same weights everywhere", "Glowing borders, abstract 3D shapes", "Interchangeable 'platform for modern teams' copy"],
+      "legitimateWhen": ["Never as a default bundle; dark UI alone can be justified by context"],
+      "alternatives": ["Art direction from product intent", "Type with roles", "Color from the domain", "Show the actual product"],
+      "references": ["references/anti-patterns.md", "references/art-direction.md"]
+    },
+    {
+      "id": "GEN-009",
+      "category": "A",
+      "title": "Arbitrary decorative elements",
+      "defaultSeverity": "low",
+      "evidence": ["Floating circles, dot grids, sparkles, orbs unrelated to content"],
+      "legitimateWhen": ["Part of a defined illustration or brand system with purpose"],
+      "alternatives": ["Use content as the visual: product UI, data, photography, diagrams"],
+      "references": ["references/anti-patterns.md", "references/art-direction.md"],
+      "codeSignals": [
+        { "pattern": "\\babsolute\\b[^\"]*\\brounded-full\\b[^\"]*\\bblur-(2xl|3xl)\\b|\\bblur-(2xl|3xl)\\b[^\"]*\\brounded-full\\b", "flags": "gi", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-010",
+      "category": "A",
+      "title": "Sections without content-driven reason",
+      "defaultSeverity": "medium",
+      "evidence": ["Stock landing-page sequence regardless of product", "Placeholder logo strip", "Repeated CTA bands"],
+      "legitimateWhen": ["Each section answers a real visitor question with real material"],
+      "alternatives": ["One section per real visitor question, in order", "Drop sections without material"],
+      "references": ["references/anti-patterns.md", "references/layout-composition.md", "platforms/web.md"]
+    },
+    {
+      "id": "GEN-011",
+      "category": "A",
+      "title": "Emoji as production iconography",
+      "defaultSeverity": "medium",
+      "evidence": ["Emoji used as feature, navigation, or status icons"],
+      "legitimateWhen": ["User-generated content, reactions, chat, or an intentionally informal voice with accessible markup"],
+      "alternatives": ["Consistent icon set or platform symbols", "No icon"],
+      "references": ["references/anti-patterns.md", "references/component-design.md"],
+      "codeSignals": [
+        { "pattern": "\\p{Extended_Pictographic}", "flags": "gu", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-012",
+      "category": "A",
+      "title": "Decorative glassmorphism",
+      "defaultSeverity": "medium",
+      "evidence": ["Frosted translucent panels for ordinary content over blurred gradients"],
+      "legitimateWhen": ["Platform material semantics for layers above content, respecting reduce-transparency settings"],
+      "alternatives": ["Solid surfaces with verified contrast", "Translucency only for floating layers"],
+      "references": ["references/anti-patterns.md", "references/color-and-surfaces.md", "platforms/macos.md"],
+      "codeSignals": [
+        { "pattern": "\\bbackdrop-blur(-[a-z0-9]+)?\\b|backdrop-filter\\s*:", "flags": "gi", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-013",
+      "category": "A",
+      "title": "Placeholder or fabricated content presented as real",
+      "defaultSeverity": "high",
+      "evidence": ["Invented metrics, testimonials, or logos", "Lorem ipsum in shipped UI", "Sample data indistinguishable from production"],
+      "legitimateWhen": ["Never presented as real; clearly marked placeholders during design are fine"],
+      "alternatives": ["Request real content", "Bracketed placeholders", "Realistic lengths including long and empty cases"],
+      "references": ["references/anti-patterns.md"],
+      "codeSignals": [
+        { "pattern": "lorem ipsum|trusted by [0-9,.]+\\+?|[0-9]+(k|,000)\\+ (teams|users|companies|customers)", "flags": "gi", "minCount": 1 }
+      ]
+    },
+    {
+      "id": "GEN-014",
+      "category": "A",
+      "title": "Micro-labels and pills everywhere",
+      "defaultSeverity": "low",
+      "evidence": ["Decorative uppercase tags and badges on most elements"],
+      "legitimateWhen": ["Labels encode state or classification the user acts on"],
+      "alternatives": ["Remove decision-free labels", "Express category through grouping"],
+      "references": ["references/anti-patterns.md", "references/typography.md"]
+    },
+    {
+      "id": "GEN-015",
+      "category": "A",
+      "title": "Gratuitous motion",
+      "defaultSeverity": "medium",
+      "evidence": ["Every section animates on scroll", "Hover effects on non-interactive elements", "Looping decorative animation"],
+      "legitimateWhen": ["Motion explains change, gives feedback, or is the product; reduced motion respected"],
+      "alternatives": ["Remove by default; add motion with a stated job"],
+      "references": ["references/anti-patterns.md", "references/motion-design.md"]
+    },
+    { "id": "HIE-001", "category": "B", "title": "Unclear focal point", "defaultSeverity": "high", "evidence": ["Several elements compete at the same visual weight", "Reviewer cannot name the first thing to look at"], "legitimateWhen": ["Deliberately neutral views such as data grids where the user chooses focus"], "alternatives": ["One dominant element per view, sized and positioned for the primary task"], "references": ["references/design-principles.md", "references/layout-composition.md"] },
+    { "id": "HIE-002", "category": "B", "title": "Weak typographic hierarchy", "defaultSeverity": "medium", "evidence": ["Levels differ by size only slightly", "Too many sizes or weights", "Headings not distinguishable from body"], "legitimateWhen": ["Dense tools using weight and position over size, consistently"], "alternatives": ["Fewer levels with clearer contrast", "Defined type roles"], "references": ["references/typography.md"] },
+    { "id": "HIE-003", "category": "B", "title": "Poor spacing rhythm", "defaultSeverity": "medium", "evidence": ["Arbitrary gaps", "Related items as far apart as unrelated ones"], "legitimateWhen": ["Intentional break in rhythm marking a transition"], "alternatives": ["Spacing scale tied to relationship strength"], "references": ["references/spacing-and-density.md"] },
+    { "id": "HIE-004", "category": "B", "title": "Inconsistent alignment", "defaultSeverity": "medium", "evidence": ["Edges that almost align", "Mixed centered and left-aligned text without reason"], "legitimateWhen": ["Deliberate offset used as a compositional device, clearly not accidental"], "alternatives": ["Shared alignment lines from a grid"], "references": ["references/layout-composition.md"] },
+    { "id": "HIE-005", "category": "B", "title": "Inappropriate density", "defaultSeverity": "high", "evidence": ["Expert tools padded so users must scroll for basic information", "Consumer flows crammed"], "legitimateWhen": ["Density matched to frequency of use and expertise"], "alternatives": ["Density modes", "Progressive disclosure", "Compact tables for operators"], "references": ["references/spacing-and-density.md", "platforms/enterprise-interfaces.md"] },
+    { "id": "HIE-006", "category": "B", "title": "Excessive decoration", "defaultSeverity": "medium", "evidence": ["Ornament competes with content for attention"], "legitimateWhen": ["Expressive brand contexts where decoration is the message and content remains legible"], "alternatives": ["Remove ornament and let content carry identity"], "references": ["references/color-and-surfaces.md", "references/art-direction.md"] },
+    { "id": "HIE-007", "category": "B", "title": "Lack of compositional intent", "defaultSeverity": "medium", "evidence": ["Elements stacked in source order with uniform treatment", "No relationship between text and imagery"], "legitimateWhen": ["Simple documents where linear order is the intent"], "alternatives": ["Compose from content priority; define relationships between elements"], "references": ["references/layout-composition.md"] },
+    { "id": "HIE-008", "category": "B", "title": "Primary and secondary actions not distinguished", "defaultSeverity": "high", "evidence": ["Multiple equally prominent buttons", "Destructive action styled as primary without safeguard"], "legitimateWhen": ["Genuinely equal choices (e.g. two balanced options) presented neutrally"], "alternatives": ["One primary per view; secondary and tertiary styles"], "references": ["references/component-design.md"] },
+    { "id": "USA-001", "category": "C", "title": "Unclear navigation", "defaultSeverity": "high", "evidence": ["Current location not indicated", "Inconsistent navigation between screens"], "legitimateWhen": ["Single-screen tools without navigation"], "alternatives": ["Persistent, platform-appropriate navigation with current state"], "references": ["references/interaction-design.md"] },
+    { "id": "USA-002", "category": "C", "title": "Ambiguous labels", "defaultSeverity": "medium", "evidence": ["Generic 'Submit', 'Learn more', icon-only buttons without labels"], "legitimateWhen": ["Universally understood icons with accessible names"], "alternatives": ["Verb + object labels"], "references": ["references/interaction-design.md"] },
+    { "id": "USA-003", "category": "C", "title": "Weak interaction feedback", "defaultSeverity": "medium", "evidence": ["No pressed, pending, or completed feedback"], "legitimateWhen": ["Instant actions whose result is visible immediately"], "alternatives": ["State change on press, progress for waits, confirmation on completion"], "references": ["references/interaction-design.md"] },
+    { "id": "USA-004", "category": "C", "title": "Poor error prevention and recovery", "defaultSeverity": "high", "evidence": ["Errors without explanation or path forward", "Destructive actions without undo or confirmation", "Form loses input on error"], "legitimateWhen": [], "alternatives": ["Inline specific messages, preserved input, undo"], "references": ["references/interaction-design.md"], "wcag": ["3.3.1", "3.3.3"] },
+    { "id": "USA-005", "category": "C", "title": "Missing empty states", "defaultSeverity": "medium", "evidence": ["Blank area or broken layout when no data"], "legitimateWhen": [], "alternatives": ["Explain why empty and the next action"], "references": ["references/component-design.md"] },
+    { "id": "USA-006", "category": "C", "title": "Inadequate keyboard interaction", "defaultSeverity": "high", "evidence": ["Common actions require pointer", "No shortcuts in expert tools"], "legitimateWhen": [], "alternatives": ["Full keyboard operability; shortcuts for frequent actions"], "references": ["references/accessibility.md", "platforms/enterprise-interfaces.md"], "wcag": ["2.1.1"] },
+    { "id": "USA-007", "category": "C", "title": "Confusing information architecture", "defaultSeverity": "high", "evidence": ["Grouping does not match user mental model", "Same item reachable under conflicting labels"], "legitimateWhen": [], "alternatives": ["Group by user task; test labels against user vocabulary"], "references": ["references/design-principles.md"] },
+    { "id": "A11Y-001", "category": "D", "title": "Insufficient contrast", "defaultSeverity": "critical", "evidence": ["Text below 4.5:1 (3:1 for large text)", "UI component boundaries below 3:1"], "legitimateWhen": ["Disabled controls and incidental text are exempt under WCAG 1.4.3"], "alternatives": ["Adjust tokens; verify with a contrast checker"], "references": ["references/accessibility.md", "references/color-and-surfaces.md"], "wcag": ["1.4.3", "1.4.11"] },
+    { "id": "A11Y-002", "category": "D", "title": "Missing or invisible focus indicators", "defaultSeverity": "critical", "evidence": ["outline: none without replacement", "Focus hidden behind sticky elements"], "legitimateWhen": [], "alternatives": ["Visible :focus-visible styles with sufficient contrast"], "references": ["references/accessibility.md"], "wcag": ["2.4.7", "2.4.11"], "codeSignals": [ { "pattern": "outline\\s*:\\s*(none|0)\\b|\\boutline-none\\b", "flags": "gi", "minCount": 1 } ] },
+    { "id": "A11Y-003", "category": "D", "title": "Inaccessible custom controls", "defaultSeverity": "critical", "evidence": ["div or span with click handler and no role, tabindex, or key handling"], "legitimateWhen": [], "alternatives": ["Native elements; otherwise follow ARIA Authoring Practices"], "references": ["references/accessibility.md", "references/component-design.md"], "wcag": ["2.1.1", "4.1.2"], "codeSignals": [ { "pattern": "<(div|span)[^>]*\\bonclick=", "flags": "gi", "minCount": 1 } ] },
+    { "id": "A11Y-004", "category": "D", "title": "Poor reading or focus order", "defaultSeverity": "high", "evidence": ["Visual order differs from DOM order", "Positive tabindex values"], "legitimateWhen": [], "alternatives": ["Source order matches reading order; avoid positive tabindex"], "references": ["references/accessibility.md"], "wcag": ["1.3.2", "2.4.3"] },
+    { "id": "A11Y-005", "category": "D", "title": "Inadequate text scaling", "defaultSeverity": "high", "evidence": ["Fixed pixel heights clip text at 200%", "Ignores Dynamic Type or font scale"], "legitimateWhen": [], "alternatives": ["Relative units, flexible containers, platform text styles"], "references": ["references/accessibility.md", "references/typography.md"], "wcag": ["1.4.4", "1.4.10", "1.4.12"] },
+    { "id": "A11Y-006", "category": "D", "title": "Missing accessible names", "defaultSeverity": "critical", "evidence": ["Icon-only buttons without labels", "Inputs without associated labels", "Images without alt"], "legitimateWhen": ["Decorative images with empty alt"], "alternatives": ["Visible labels; aria-label only when a visible label is impossible"], "references": ["references/accessibility.md"], "wcag": ["1.1.1", "4.1.2"] },
+    { "id": "A11Y-007", "category": "D", "title": "Unnecessary motion without reduced-motion support", "defaultSeverity": "high", "evidence": ["Large-scale motion with no prefers-reduced-motion handling", "Auto-playing motion over 5 seconds without pause"], "legitimateWhen": ["Essential motion with alternatives"], "alternatives": ["Respect reduced-motion; provide pause controls"], "references": ["references/motion-design.md", "references/accessibility.md"], "wcag": ["2.2.2", "2.3.3"] },
+    { "id": "A11Y-008", "category": "D", "title": "Inadequate touch or pointer targets", "defaultSeverity": "high", "evidence": ["Targets below platform minimums (WCAG 24x24 CSS px AA; Apple 44x44 pt default on iOS; Android 48x48 dp)"], "legitimateWhen": ["Inline text links and targets meeting WCAG spacing exceptions"], "alternatives": ["Enlarge hit area with padding, not only the visual"], "references": ["references/accessibility.md", "platforms/ios-ipados.md", "platforms/android.md"], "wcag": ["2.5.8"] },
+    { "id": "TEC-001", "category": "E", "title": "Broken layout", "defaultSeverity": "critical", "evidence": ["Overlapping or clipped elements at supported sizes"], "legitimateWhen": [], "alternatives": ["Intrinsic layout (flex/grid) and testing at real breakpoints"], "references": ["references/responsive-design.md"] },
+    { "id": "TEC-002", "category": "E", "title": "Overflow and long-content failure", "defaultSeverity": "high", "evidence": ["Long names, translations, or numbers break layout", "Horizontal page scroll at 320 CSS px"], "legitimateWhen": ["Data tables with deliberate horizontal scroll inside their own region"], "alternatives": ["min-width: 0, wrapping, truncation with full value available"], "references": ["references/responsive-design.md"], "wcag": ["1.4.10"] },
+    { "id": "TEC-003", "category": "E", "title": "Inconsistent responsive behavior", "defaultSeverity": "medium", "evidence": ["Components adapt differently without reason", "Desktop layout merely shrunk"], "legitimateWhen": [], "alternatives": ["Defined adaptation strategy per component"], "references": ["references/responsive-design.md"] },
+    { "id": "TEC-004", "category": "E", "title": "Duplicated styles and magic numbers", "defaultSeverity": "low", "evidence": ["Same values hard-coded across components", "One-off overrides"], "legitimateWhen": ["Documented one-off exceptions"], "alternatives": ["Tokens and shared components"], "references": ["references/design-systems.md"] },
+    { "id": "TEC-005", "category": "E", "title": "Incorrect component semantics", "defaultSeverity": "high", "evidence": ["Links used as buttons or vice versa", "Headings chosen for size", "Tables built from divs"], "legitimateWhen": [], "alternatives": ["Semantic elements matching behavior"], "references": ["references/component-design.md", "platforms/web.md"], "wcag": ["1.3.1", "4.1.2"] },
+    { "id": "TEC-006", "category": "E", "title": "Unnecessary dependencies", "defaultSeverity": "low", "evidence": ["Libraries added for decorative effects", "Second UI framework added alongside the existing one"], "legitimateWhen": ["Dependency solves a real, hard problem the stack lacks"], "alternatives": ["Platform features and existing dependencies"], "references": ["workflows/audit-existing-code.md"] },
+    { "id": "TEC-007", "category": "E", "title": "Runtime errors", "defaultSeverity": "critical", "evidence": ["Console errors, crashes, failed builds where tooling exists to check"], "legitimateWhen": [], "alternatives": ["Fix root cause; rerun checks"], "references": ["workflows/implement-interface.md"] },
+    { "id": "TEC-008", "category": "E", "title": "Missing interaction states", "defaultSeverity": "medium", "evidence": ["No hover, focus, active, disabled, loading, error, or empty states where relevant"], "legitimateWhen": ["States genuinely not applicable to the component"], "alternatives": ["State matrix per component"], "references": ["references/component-design.md"] }
+  ],
+  "scoring": {
+    "scale": { "min": 0, "max": 4, "notAssessable": "n/a" },
+    "anchors": {
+      "0": "Absent or broken",
+      "1": "Present but weak; multiple significant problems",
+      "2": "Adequate; some significant problems",
+      "3": "Good; minor problems only",
+      "4": "Excellent; no meaningful problems found with the evidence available"
+    },
+    "dimensions": [
+      { "id": "distinctiveness", "name": "Visual distinctiveness", "weight": 0.15, "categories": ["A"] },
+      { "id": "composition", "name": "Composition and hierarchy", "weight": 0.15, "categories": ["A", "B"] },
+      { "id": "consistency", "name": "Design consistency", "weight": 0.10, "categories": ["B", "E"] },
+      { "id": "usability", "name": "Usability", "weight": 0.15, "categories": ["C"] },
+      { "id": "platform-fit", "name": "Platform fit", "weight": 0.10, "categories": ["C", "E"] },
+      { "id": "accessibility", "name": "Accessibility", "weight": 0.15, "categories": ["D"] },
+      { "id": "technical", "name": "Technical implementation", "weight": 0.10, "categories": ["E"] },
+      { "id": "interaction", "name": "Interaction completeness", "weight": 0.10, "categories": ["C", "E"] }
+    ],
+    "bands": [
+      { "min": 3.2, "verdict": "strong" },
+      { "min": 2.4, "verdict": "adequate" },
+      { "min": 0, "verdict": "needs-work" }
+    ],
+    "gates": [
+      { "when": "any open finding with severity critical", "verdict": "blocked" },
+      { "when": "any open finding with severity high in category D", "maxVerdict": "needs-work" },
+      { "when": "fewer than half of total weight assessable", "verdict": "insufficient-evidence" }
+    ]
+  }
+}
