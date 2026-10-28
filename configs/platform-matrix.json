@@ -65,6 +65,7 @@
   ],
   "taskRoutes": [
     { "task": "marketing-site", "files": ["references/art-direction.md", "references/layout-composition.md", "references/typography.md", "references/motion-design.md", "platforms/web.md", "references/anti-patterns.md"] },
+    { "task": "immersive-3d", "files": ["references/3d-and-webgl.md", "references/art-direction.md", "references/motion-design.md", "references/accessibility.md", "platforms/web.md"] },
     { "task": "web-application", "files": ["references/component-design.md", "references/interaction-design.md", "references/spacing-and-density.md", "platforms/web.md", "references/accessibility.md"] },
     { "task": "dense-admin", "files": ["references/layout-composition.md", "references/spacing-and-density.md", "references/component-design.md", "references/accessibility.md", "platforms/enterprise-interfaces.md"] },
     { "task": "macos-app", "files": ["platforms/macos.md", "references/interaction-design.md", "references/accessibility.md", "references/design-principles.md"] },

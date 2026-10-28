@@ -48,7 +48,7 @@ Static signal expectations (checked by `tests/anti-pattern-rules.test.mjs`):
 
 ```json
 {
-  "candidate": ["GEN-001", "GEN-002", "GEN-003", "GEN-004", "GEN-005", "GEN-009", "GEN-011", "GEN-012", "GEN-013"],
+  "candidate": ["GEN-001", "GEN-002", "GEN-003", "GEN-004", "GEN-005", "GEN-009", "GEN-011", "GEN-012", "GEN-013", "GEN-023"],
   "absent": [],
   "needsJudgment": []
 }

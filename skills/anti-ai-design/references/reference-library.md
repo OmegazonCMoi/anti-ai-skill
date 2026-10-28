@@ -131,6 +131,18 @@ Use these to check what native integration (menus, dialogs, window controls, acc
 
 These document how this skill is installed; they are not design references. Details are in the repository's `adapters/` directory.
 
+## AI-pattern catalogs
+
+| ID | Source | Type | Status |
+| --- | --- | --- | --- |
+| `impeccable-slop` | [Impeccable: Slop catalog](https://impeccable.style/slop) | pattern-gallery | content-inspected |
+| `anthropic-frontend-skills` | [Anthropic: Improving frontend design through Skills](https://claude.com/resources/articles/improving-frontend-design-through-skills) | implementation-guidance | content-inspected |
+| `hustletoai-vibe-coded` | [How to tell if a website is vibe coded](https://www.hustletoai.com/blog/programming-7/how-to-tell-if-a-website-is-vibe-coded-120) | implementation-guidance | content-inspected |
+
+- **Impeccable Slop catalog**: about 67 named patterns across visual details, typography, color, layout, motion, copy, and imagery. Source of GEN-024 to GEN-027 and several detection lines. Caveat: a commercial tool's opinionated list; patterns are tells, not defects by themselves.
+- **Anthropic article** (2025-11-12): explains why unguided models converge on "Inter fonts, purple gradients on white backgrounds, and minimal animations" (distributional convergence). Caveat: written to promote a skill; its own suggestions (atmospheric backgrounds, staggered page-load reveals) can become new defaults.
+- **hustletoai article**: signs that no human reviewed generated output: dead buttons, forms without feedback, placeholder testimonials, builder badges, upbeat microcopy. Source of GEN-028. Caveat: blog post, anecdotal.
+
 ## Adding a reference
 
 A new reference needs: a real, specific URL; a type from the vocabulary above; what it teaches and which decisions it informs; caveats; a verification status with date. Prefer official and normative sources for requirements, and treat example products as evidence of choices, not as rules.

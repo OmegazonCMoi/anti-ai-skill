@@ -35,11 +35,11 @@ Do not turn every component into a floating, bordered, rounded rectangle. Avoid 
 
 ### Rule D: No generic visual identity
 
-Never default automatically to: purple-to-blue gradients; generic dark SaaS; identical oversized headings across unrelated projects; the same hero for every site; repetitive feature grids; decorative blurred circles; emoji as production icons; stock illustrations without rationale; pills everywhere; micro-labels everywhere; random accent colors; gratuitous animation; dashboard layouts copied into products that do not need them; placeholder content presented as real; excessive glassmorphism; artificial symmetry; "spacious" layouts that hide information. Any of these can be right in context. None of them is a default.
+Never default automatically to: purple-to-blue gradients; generic dark SaaS; identical oversized headings across unrelated projects; the same hero for every site; repetitive feature grids; decorative blurred circles; emoji as production icons; stock illustrations without rationale; pills everywhere; micro-labels everywhere; random accent colors; gratuitous animation; dashboard layouts copied into products that do not need them; placeholder content presented as real; excessive glassmorphism; artificial symmetry; "spacious" layouts that hide information; gradient hero text or grain over gradients; Inter everywhere or the Space Grotesk + Instrument Serif pairing; accent words in headlines (italic, serif, or a different color); hero metric strips; cream-and-terracotta "tasteful" palettes; decorative "01 / 02" section numbers; dead buttons to `#`; "not X, but Y" slogans; colored-border cards; an icon on every element; untouched shadcn/ui defaults; scroll fade-ins and cursor-following beams; opacity-only hover states; low-contrast dark mode; em dashes and buzzword copy. Any of these can be right in context. None of them is a default. The full banned-by-default list with rule IDs is in [anti-patterns.md](references/anti-patterns.md#banned-by-default-the-20-ai-tells).
 
 ### Rule E: No arbitrary minimalism
 
-Anti-generic does not mean empty, monochrome, or flat. A distinctive interface can be dense, colorful, playful, editorial, technical, luxurious, industrial, or deliberately unconventional. The art direction must come from the product's purpose, audience, brand, and constraints.
+Anti-generic does not mean empty, monochrome, or flat. A distinctive interface can be dense, colorful, playful, editorial, technical, luxurious, industrial, or deliberately unconventional. The art direction must come from the product's purpose, audience, brand, and constraints. Aim for distinctive, not merely non-generic: every project gets one **signature idea** a visitor would remember, and where the context allows (marketing, launches, portfolios, product showcases, brand moments) go further than the usual web: immersive 3D with Three.js when the subject is physical or spatial, kinetic type, interactive objects, print-inspired or raw layouts. Keep core task flows familiar; put the boldness where it does not cost usability.
 
 ### Rule F: Respect the existing project
 
@@ -72,7 +72,7 @@ Derive the direction from the product, not from a preset:
 1. **Intent**: 2-4 qualities the product must communicate (precision, warmth, calm, energy, credibility, playfulness...), each tied to a real use case.
 2. **Visual identity**: typography roles, palette and semantic colors, surfaces, spacing and density, grid, imagery, iconography, radii, motion.
 3. **Composition**: hierarchy, reading order, scale contrast, rhythm between sections, relationship of text to imagery and interface.
-4. **Challenge the first idea**: when exploration adds value, sketch two or three directions that differ in **composition or presentation strategy**, not just accent color. Skip this when the user asked for direct implementation.
+4. **Challenge the first idea**: write down the median version you would expect, then move away from it on at least three axes and name the signature idea ([art-direction](references/art-direction.md#step-4b-push-past-the-median)). When exploration adds value, sketch two or three directions that differ in **composition or presentation strategy**, not just accent color. Skip this when the user asked for direct implementation.
 5. **Specification**: turn the chosen direction into implementable rules (type scale, tokens, layout rules, component treatments). Ban unanchored adjectives.
 
 Procedure: [workflows/define-art-direction.md](workflows/define-art-direction.md). Reference: [references/art-direction.md](references/art-direction.md). Template: [templates/art-direction-spec.md](templates/art-direction-spec.md).
@@ -126,7 +126,7 @@ After a draft (design or code), critique it as a reviewer would, using [referenc
 | --- | --- |
 | 1. Intent | Is this appropriate for the actual product and users? |
 | 2. Composition | Is there a clear, intentional hierarchy? Were the badge-headline formula, repetitive card grids, and over-containerization avoided or justified? |
-| 3. Distinctiveness | Is there an identity beyond accent color and radius? Does the substitution test pass? |
+| 3. Distinctiveness | Is there an identity beyond accent color and radius? Can you name the signature idea? Does the substitution test pass? |
 | 4. Platform fit | Does it follow the target platform's conventions and inputs? |
 | 5. Accessibility | Contrast, focus, semantics, keyboard, touch targets, motion, text scaling addressed? |
 | 6. Functionality | Do interactive elements actually work, with their states? |
@@ -148,6 +148,7 @@ Do **not** load everything. Read SKILL.md, then load only what the task needs, b
 | iOS / iPadOS app | [ios-ipados](platforms/ios-ipados.md), [interaction-design](references/interaction-design.md), [accessibility](references/accessibility.md), [responsive-design](references/responsive-design.md) |
 | Android app | [android](platforms/android.md), [interaction-design](references/interaction-design.md), [accessibility](references/accessibility.md), [responsive-design](references/responsive-design.md) |
 | Electron / Tauri / Qt / Flutter desktop | [desktop-cross-platform](platforms/desktop-cross-platform.md), plus the OS file(s) targeted |
+| 3D, WebGL, immersive or experimental web | [3d-and-webgl](references/3d-and-webgl.md), [art-direction](references/art-direction.md), [motion-design](references/motion-design.md), [accessibility](references/accessibility.md), [web](platforms/web.md) |
 | Defining a visual identity | [workflows/define-art-direction](workflows/define-art-direction.md), [art-direction](references/art-direction.md), [typography](references/typography.md), [color-and-surfaces](references/color-and-surfaces.md) |
 | Design system or tokens | [design-systems](references/design-systems.md), [templates/design-system-spec](templates/design-system-spec.md) |
 | Visual audit (screenshot, live UI) | [anti-patterns](references/anti-patterns.md), [design-critique](references/design-critique.md), [workflows/audit-interface](workflows/audit-interface.md), [workflows/final-quality-gate](workflows/final-quality-gate.md) |

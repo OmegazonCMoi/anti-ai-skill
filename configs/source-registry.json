@@ -924,6 +924,68 @@
         "date": "2026-10-19",
         "notes": "Page text retrieved with Node fetch and read."
       }
+    },
+    {
+      "id": "impeccable-slop",
+      "name": "Impeccable: Slop catalog",
+      "url": "https://impeccable.style/slop",
+      "type": "pattern-gallery",
+      "category": "anti-patterns",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Named catalog of patterns that expose AI-generated UI: side-tab accent borders, grid-line backgrounds, italic serif display headlines, hero metric layouts, numbered section labels, pulsing dots, marquees, em-dash overuse, forced 'not X but Y' contrast, cream/beige palettes.",
+      "informs": [
+        "anti-pattern detection",
+        "audit rules GEN-015 to GEN-027"
+      ],
+      "caveats": "Opinionated list from a commercial design tool; a listed pattern is a tell, not a defect in every context.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-28",
+        "notes": "Page text read; about 67 patterns listed under Your design system, Visual Details, Typography, Color & Contrast, Layout & Space, Motion, Copy, Imagery, General quality."
+      }
+    },
+    {
+      "id": "anthropic-frontend-skills",
+      "name": "Anthropic: Improving frontend design through Skills",
+      "url": "https://claude.com/resources/articles/improving-frontend-design-through-skills",
+      "type": "implementation-guidance",
+      "category": "anti-patterns",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Unguided models converge on Inter fonts, purple gradients on white backgrounds, and minimal animations; advises avoiding generic fonts like Arial and Inter and clichéd purple gradients.",
+      "informs": [
+        "typeface defaults",
+        "color defaults"
+      ],
+      "caveats": "Written to promote a skill; its recommendations can harden into new defaults.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-28",
+        "notes": "Article dated 2025-11-12; quoted passages on fonts, colors, and layouts read."
+      }
+    },
+    {
+      "id": "hustletoai-vibe-coded",
+      "name": "How to tell if a website is vibe coded",
+      "url": "https://www.hustletoai.com/blog/programming-7/how-to-tell-if-a-website-is-vibe-coded-120",
+      "type": "implementation-guidance",
+      "category": "anti-patterns",
+      "platforms": [
+        "web"
+      ],
+      "learn": "Signs of unreviewed generated sites: purple gradient heroes, three-column feature cards, emoji in headings, glowing hovers, upbeat microcopy, placeholder testimonials, builder badges, dead buttons, forms without feedback.",
+      "informs": [
+        "audit rules GEN-013, GEN-025, GEN-028"
+      ],
+      "caveats": "Blog post; anecdotal, no data.",
+      "verification": {
+        "status": "content-inspected",
+        "date": "2026-10-28",
+        "notes": "Page text read; UI, copy, builder-marker, and interactivity sections summarized."
+      }
     }
   ]
 }

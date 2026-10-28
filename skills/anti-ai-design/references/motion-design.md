@@ -14,6 +14,7 @@ Before adding any animation, name its job:
 | **Continuity**: this is the same object | A thumbnail expands into the detail view |
 | **Status**: something is happening | Progress indicators, skeleton shimmer (subtle, respecting reduced motion) |
 | **Expression**: brand character, sparingly | A single considered moment on a marketing page, not every section |
+| **Immersion**: the experience is the point | A 3D product you can rotate, a scroll-told scene, a game or interactive piece (see [3d-and-webgl.md](3d-and-webgl.md)) |
 
 No job → no animation. "Every section fades up on scroll" fails the test (GEN-015).
 

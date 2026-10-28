@@ -13,7 +13,7 @@ export const REQUIRED_FILES = [
   ...['anti-patterns', 'design-principles', 'art-direction', 'layout-composition', 'typography', 'color-and-surfaces',
     'spacing-and-density', 'component-design', 'interaction-design', 'motion-design', 'accessibility',
     'responsive-design', 'design-systems', 'design-critique', 'reference-library', 'source-verification',
-    'decision-framework'].map((f) => `references/${f}.md`),
+    'decision-framework', '3d-and-webgl'].map((f) => `references/${f}.md`),
   ...['web', 'macos', 'ios-ipados', 'android', 'desktop-cross-platform', 'enterprise-interfaces'].map((f) => `platforms/${f}.md`),
   ...['discover', 'define-art-direction', 'design-from-scratch', 'improve-existing-interface', 'implement-interface',
     'audit-interface', 'audit-existing-code', 'final-quality-gate'].map((f) => `workflows/${f}.md`),

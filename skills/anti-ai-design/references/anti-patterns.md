@@ -12,6 +12,56 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 2. During audit: for each hit, record evidence, check "Legitimate when", then classify as **defect** or **justified**.
 3. When replacing: pick from "Replacement strategies" based on the content, never by rotating through them. A replacement used on every section is just a new formula.
 
+## Banned by default: the 20 AI tells
+
+Never produce these by default. Each one is allowed only when its rule's "Legitimate when" holds, and you can say why.
+
+| # | Tell | Rule |
+| --- | --- | --- |
+| 1 | Purple-to-blue gradient | GEN-005 |
+| 2 | Gradient hero text | GEN-005 |
+| 3 | Emojis in headings | GEN-011 |
+| 4 | Inter font everywhere | GEN-016 |
+| 5 | Colored border cards | GEN-018 |
+| 6 | Glassmorphism cards | GEN-012 |
+| 7 | Low-contrast dark mode | A11Y-001 |
+| 8 | Three icon boxes in a row | GEN-002 |
+| 9 | Badge above the headline | GEN-001 |
+| 10 | Lucide icons everywhere | GEN-019 |
+| 11 | Untouched shadcn/ui | GEN-020 |
+| 12 | Fade-in on scroll | GEN-015 |
+| 13 | Cursor-following beam | GEN-015 |
+| 14 | Buttons that fade on hover | GEN-021 |
+| 15 | Inconsistent spacing | HIE-003 |
+| 16 | Em dashes everywhere | GEN-022 |
+| 17 | Generic buzzword copy | GEN-023 |
+| 18 | Serif italic accent words | GEN-017 |
+| 19 | Space Grotesk + Instrument Serif | GEN-016 |
+| 20 | Grain over a gradient | GEN-005 |
+
+### More tells from published catalogs
+
+Collected from the sources in [reference-library.md](reference-library.md#ai-pattern-catalogs) (checked 2026-10-28).
+
+| Tell | Rule |
+| --- | --- |
+| Headline with one word in italic, serif, or the accent color | GEN-017 |
+| Oversized italic serif display headline | GEN-017 |
+| Bento grid where each tile is just a feature box | GEN-002 |
+| Purple and bright cyan on near-black; glow borders and glowing hovers | GEN-008 |
+| Grid-line or dot-pattern background; radial halo behind the hero | GEN-009 |
+| Stock or AI-generated hero image unrelated to the product | GEN-009 |
+| "John Doe" testimonials, "Company Name", builder badges left in | GEN-013 |
+| Auto-scrolling logo marquee; pulsing status dot; typewriter or blinking cursor; elastic easing | GEN-015 |
+| Geist as the only typeface | GEN-016 |
+| Gray text on a colored surface | A11Y-001 |
+| Hero metric strip ("10k+ users · 99.9% uptime · 24/7") | GEN-024 |
+| "Not X, but Y" slogans, fragment triads, "Let's go!" microcopy | GEN-025 |
+| Cream/beige + terracotta "tasteful" palette | GEN-026 |
+| Decorative "01 / 02 / 03" section numbers | GEN-027 |
+| Buttons to `#`, forms with no feedback | GEN-028 |
+| Abstract 3D blob, torus, or crystal hero unrelated to the product | GEN-029 |
+
 ---
 
 ## GEN-001: Automatic badge + headline + description stack
@@ -35,7 +85,7 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-002: Repetitive equal-weight feature card grid
 
-**Detection.** 3-8 cards in a uniform grid, each with icon, short title, one-sentence description, identical size and treatment. Icons are generic (bolt, shield, sparkles). Items vary wildly in real importance but are presented equally. Removing any one card would not be noticed.
+**Detection.** 3-8 cards in a uniform grid, each with icon, short title, one-sentence description, identical size and treatment. The most common form is three icon boxes in a row: an icon in a tinted square, a title, one line. A bento grid of mixed-size tiles is the same pattern when each tile is just another feature box. Icons are generic (bolt, shield, sparkles). Items vary wildly in real importance but are presented equally. Removing any one card would not be noticed.
 
 **Why it hurts.** Equal weight for unequal things destroys hierarchy. Readers skim six interchangeable boxes and retain none. It signals "we listed features" rather than "we understand what matters to you".
 
@@ -80,7 +130,7 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-005: Default generic gradients
 
-**Detection.** Purple-to-blue (or pink-to-orange) gradients on hero backgrounds, headline text, buttons, or card borders, unrelated to the brand. Blurred color blobs behind the hero.
+**Detection.** Purple-to-blue (or pink-to-orange) gradients on hero backgrounds, headline text, buttons, or card borders, unrelated to the brand. Gradient-filled hero text (`bg-clip-text text-transparent`). Grain or noise laid over a gradient to make it look crafted. Blurred color blobs behind the hero.
 
 **Why it hurts.** It is the most recognizable marker of template output. It usually reduces text contrast and competes with content.
 
@@ -120,7 +170,7 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-009: Arbitrary decorative elements
 
-**Detection.** Floating circles, dot grids, sparkles, squiggles, random 3D shapes, or gradient orbs placed for "visual interest", unrelated to content.
+**Detection.** Floating circles, dot grids, grid-line backgrounds, radial halos behind the hero, sparkles, squiggles, random 3D shapes, or gradient orbs placed for "visual interest", unrelated to content. Stock or AI-generated hero images that show nothing about the product.
 
 **Why it hurts.** Decoration without meaning competes with content and dates fast.
 
@@ -140,7 +190,7 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-011: Emoji as production iconography
 
-**Detection.** 🚀 ⚡ 🔒 used as feature or navigation icons in a production UI.
+**Detection.** 🚀 ⚡ 🔒 used as feature or navigation icons in a production UI, or prefixed to headings ("🚀 Get started", "✨ Features").
 
 **Why it hurts.** Rendering differs across platforms, they carry unintended tone, screen readers announce their names, and they cannot be styled to the system.
 
@@ -160,7 +210,7 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-013: Placeholder or fabricated content presented as real
 
-**Detection.** "Trusted by 10,000+ teams", invented testimonials, fake logos, lorem ipsum in shipped UI, made-up metrics, sample data indistinguishable from production data.
+**Detection.** "Trusted by 10,000+ teams", invented testimonials ("John Doe, CEO"), fake logos, lorem ipsum or "Company Name" in shipped UI, builder badges left in ("Edit with Lovable"), made-up metrics, sample data indistinguishable from production data.
 
 **Why it hurts.** It is dishonest, it can create legal exposure, and it hides layout problems that real content would reveal.
 
@@ -180,13 +230,153 @@ Rule identifiers (`GEN-001` ...) match the audit rules used in [design-critique.
 
 ## GEN-015: Gratuitous motion
 
-**Detection.** Every section fades/slides up on scroll; hover effects on non-interactive elements; looping background animation; parallax on everything.
+**Detection.** Every section fades/slides up on scroll; a spotlight, glow, or border beam that follows the cursor; an auto-scrolling logo marquee with no pause control (WCAG 2.2.2); a pulsing status dot announcing nothing new; a typewriter headline or blinking cursor on static text; bounce or elastic easing on routine UI; hover effects on non-interactive elements; looping background animation; parallax on everything.
 
 **Why it hurts.** Slows reading, distracts, can cause discomfort, and makes the interface feel templated.
 
 **Legitimate when.** Motion explains a change (where something went, what caused what), gives feedback, or is the product (a motion tool, a game). It respects reduced-motion preferences.
 
 **Replacement strategies.** See [motion-design.md](motion-design.md): remove by default, add back motion with a stated job.
+
+## GEN-016: Default AI typeface picks
+
+**Detection.** Inter (or Geist) for every role (display, body, UI, numbers) and nothing else. Or the current "designed" default: Space Grotesk headings with Instrument Serif accents. No one can say why the face was chosen.
+
+**Why it hurts.** These are the generators' defaults, so they read as "no decision made". One neutral face at the same weights flattens hierarchy and voice.
+
+**Legitimate when.** The face belongs to the established brand or design system. Or a dense product UI uses a neutral face on purpose and pairs it with a distinct display or numeric face.
+
+**Replacement strategies.** Choose type from the product's voice and reading conditions ([typography.md](typography.md)); give display, body, and data different roles; use the system font for native apps.
+
+## GEN-017: Accent words in headlines (italic, serif, or a different color)
+
+**Detection.** A headline with one or two words swapped to an italic serif, a gradient, or the accent color ("Build <span class=\"text-primary\">faster</span> together"), often repeated on every section heading. Also: an oversized italic serif display headline used as the default "editorial" look.
+
+**Why it hurts.** The contrast carries no meaning, so it becomes a tic. Repeated, it is a formula like GEN-001.
+
+**Legitimate when.** The type system defines this contrast as a brand device with a meaning (names, quotations, titles of works) and uses it consistently.
+
+**Replacement strategies.** Write a headline that needs no highlighted word; get emphasis from wording, scale, or weight within one family; keep italics for titles, terms, and quotations.
+
+## GEN-018: Colored accent border cards
+
+**Detection.** Cards whose only identity is a thick colored left or top border, or a tinted border (`border-blue-500/30`), with a different arbitrary color per card.
+
+**Why it hurts.** Color implies meaning (status, category) that is not there, and the stripe makes a container even more prominent than its content.
+
+**Legitimate when.** The color encodes state or category the user acts on (error, warning, priority, owner), the meaning is also given in text, and the palette is semantic. Documentation callouts following a defined system.
+
+**Replacement strategies.** Drop the container and group with heading and spacing; show category with a label or grouping; keep color for semantic state.
+
+## GEN-019: Default icon set on every element
+
+**Detection.** An icon, usually from Lucide, beside every heading, button, list item, and stat. Icons picked by keyword (Zap for speed, Shield for security). The icon set is the page's only visual language.
+
+**Why it hurts.** Icons that restate their label add noise, not recognition. The same stroke set on every AI-built page makes it interchangeable.
+
+**Legitimate when.** Icons speed recognition in dense, repeated UI: toolbars, navigation, file types, status. Lucide is a fine library when icons are placed where they earn it.
+
+**Replacement strategies.** Delete icons that only repeat their label; use product imagery, data, or domain-specific illustration; use platform symbols in native apps.
+
+## GEN-020: Untouched component library defaults
+
+**Detection.** shadcn/ui (or any kit) shipped as installed: default neutral palette, default radius, stock Card and Button styling, no project tokens. The page looks like the library's demo.
+
+**Why it hurts.** The library is a starting point, not an identity. Thousands of products share the exact same surface.
+
+**Legitimate when.** Internal tools or prototypes where speed beats identity, stated as such. In an existing project already built on the defaults, follow Rule F: improve gradually, do not rip it out.
+
+**Replacement strategies.** Set project tokens (color, radius, type, spacing) from the art direction before building screens; restyle the primitives that carry identity (buttons, inputs, navigation, headings); keep the library's behavior and accessibility.
+
+## GEN-021: Opacity fade as the only hover state
+
+**Detection.** `hover:opacity-80` (or similar) as the whole interaction design of buttons and links, with no distinct focus, active, or pressed state.
+
+**Why it hurts.** The control gets less visible exactly when the user is about to act, and the missing states make it feel unresponsive.
+
+**Legitimate when.** Image or icon-only controls where dimming is the platform convention, with a separate visible focus state.
+
+**Replacement strategies.** Shift background or text color within the palette; add a pressed state; define hover, focus-visible, active, and disabled together ([component-design.md](component-design.md)).
+
+## GEN-022: Em dashes throughout UI copy
+
+**Detection.** Em dashes in headings, buttons, card descriptions, and microcopy; every sentence built as "X — Y".
+
+**Why it hurts.** It is one of the most recognized marks of generated text, and in short UI strings it splits one idea into two weak ones.
+
+**Legitimate when.** Long-form editorial text following a house style that uses them sparingly. Ranges and empty values in data tables.
+
+**Replacement strategies.** Use a period, colon, comma, or parentheses; split into two short sentences; cut the second clause.
+
+## GEN-023: Generic buzzword copy
+
+**Detection.** "Supercharge", "seamless", "effortless", "unlock", "elevate", "all-in-one", "next-generation", "lightning fast". Copy that could describe any product, with no number, example, or domain noun.
+
+**Why it hurts.** Readers skip it, and it tells them nobody knew what was specific about the product.
+
+**Legitimate when.** Never as a default. A specific, supported claim that happens to use one of these words is fine.
+
+**Replacement strategies.** Say what the product does, for whom, with a concrete domain noun; replace adjectives with a number, example, or screenshot; write the line a customer would repeat.
+
+## GEN-024: Hero metric strip
+
+**Detection.** A row of three or four big numbers with small labels under the hero ("10k+ users", "99.9% uptime", "24/7 support"). Round, unsourced figures chosen to fill the row.
+
+**Why it hurts.** It is one of the most familiar landing-page templates, and unsourced numbers read as filler or as fabrication (GEN-013).
+
+**Legitimate when.** Real, sourced figures that answer a question the visitor has, shown where that question comes up. Dashboards where the numbers are the live data.
+
+**Replacement strategies.** One sourced number next to the claim it proves; a real chart, table, or case study; cut figures nobody would miss.
+
+## GEN-025: Formulaic AI copy constructions
+
+**Detection.** "Not X, but Y" and "It's not just X, it's Y" slogans; fragment triads ("Fast. Simple. Secure."); over-upbeat microcopy with exclamation marks ("Let's go!", "You're all set! 🎉"); rhetorical question headlines ("Ready to transform your workflow?").
+
+**Why it hurts.** These rhythms are recognized as generated text, and turning every point into a tagline means none of them lands.
+
+**Legitimate when.** One deliberate use where the contrast or rhythm carries a real claim.
+
+**Replacement strategies.** Plain declarative sentences with a concrete subject; microcopy that says what happened and what to do next; read it aloud and cut what a person would not say.
+
+## GEN-026: Default warm-editorial palette
+
+**Detection.** Cream or beige background, terracotta, orange, or olive accent, serif display face: the "tasteful" palette generators now reach for instead of purple. The same warmth on unrelated products.
+
+**Why it hurts.** It swaps one default for another. The palette still says nothing about this product.
+
+**Legitimate when.** The palette comes from the brand, the material, or the domain (paper, food, craft) and the art direction says so.
+
+**Replacement strategies.** Derive color from the domain, imagery, and audience; choose one dominant color and one sharp accent with a stated reason.
+
+## GEN-027: Decorative section numbering
+
+**Detection.** Tiny "01 / 02 / 03" or "§ 01" labels, often monospace, beside section headings that have no real order.
+
+**Why it hurts.** Numbers promise a sequence that is not there and add another tier of micro-labels (GEN-014).
+
+**Legitimate when.** The sections are a real ordered sequence: steps, chapters, a procedure.
+
+**Replacement strategies.** Remove the numbers and let headings carry the structure; use a real step indicator where order matters.
+
+## GEN-028: Fake or dead interactions
+
+**Detection.** Buttons and links to `#` or with empty handlers; forms that submit with no success or error feedback; navigation to pages that do not exist.
+
+**Why it hurts.** The interface promises actions it cannot perform. Users lose trust at the first dead click. Rule G treats a design without working states as unfinished.
+
+**Legitimate when.** A clearly labeled prototype in a design review, never shipped.
+
+**Replacement strategies.** Wire the action or remove the control; list unfinished features as proposals in the final report; give every form loading, success, and error states.
+
+## GEN-029: Gratuitous 3D
+
+**Detection.** A distorted sphere, torus knot, glass crystal, or floating icosahedron as the hero, unrelated to the product. A slow 3D loop behind text. A WebGL canvas with no poster, no fallback, and no reduced-motion path. Content that exists only inside the canvas.
+
+**Why it hurts.** It is the 3D version of the purple gradient: impressive for a second, then generic. It costs load time and battery, and can hide content from assistive technology.
+
+**Legitimate when.** The subject is physical or spatial, the data is spatial, the experience is the product, or a mechanism is easier to show than tell, and the scene has a poster fallback, honors reduced motion, and keeps content in HTML. In those cases 3D is encouraged, not merely tolerated: see [3d-and-webgl.md](3d-and-webgl.md).
+
+**Replacement strategies.** Model the actual product or subject; use photography, video, SVG, or CSS 3D when they carry the same message for less; use one strong scene at the key moment instead of 3D in every section.
 
 ---
 

@@ -28,6 +28,9 @@ First-view options beyond the formula (pick by content):
 - A working mini-tool (search, calculator, playground) when the product can be tried instantly.
 - A typographic statement alone, when the message is strong and the product is not visual.
 - An editorial image with a headline set into the composition, when photography carries the brand.
+- An interactive 3D scene of the product or its subject (Three.js), when its form is the message; with a poster fallback and content in HTML ([../references/3d-and-webgl.md](../references/3d-and-webgl.md)).
+- A kinetic or oversized typographic composition, when the voice is the product.
+- A print-inspired, raw, or maximalist layout, when the audience rewards a strong point of view.
 
 ## Content sites and documentation
 

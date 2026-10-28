@@ -61,6 +61,27 @@ Decide the presentation strategy for the main surfaces before styling. Examples 
 - **Evidence-led**: data, benchmarks, case material front and center, sourced.
 - **Utility-first**: the page *is* the tool (a calculator, a search, a configurator).
 - **Catalog**: the content collection itself (templates, products) is the experience.
+- **Immersive / spatial**: a real-time 3D scene of the product or its subject is the main surface (see [3d-and-webgl.md](3d-and-webgl.md)).
+- **Kinetic typography**: type is the image; scale, cropping, and movement carry the message.
+- **Interactive object**: one thing the visitor can play with (configure, drag, assemble, draw) instead of reading about it.
+- **Scroll-told narrative**: one subject transforms as the visitor scrolls, chapter by chapter.
+- **Print-inspired**: newspaper, poster, catalog, or specimen-book conventions: columns, folios, rules, big numerals with meaning.
+- **Raw / brutalist**: exposed structure, system type, hard edges, visible grid; credible for developer, art, or underground audiences.
+- **Maximalist collage**: dense layering of imagery, type, and color for brands whose voice is loud.
+
+## Step 4b: Push past the median
+
+The first layout that comes to mind is the average of every site the model has seen. Treat it as the thing to move away from, then stop at what the context can carry.
+
+1. **Write the median down.** One line: "the expected version is a centered hero, three feature cards, a stat strip, a CTA band". Now you know what to avoid.
+2. **Find the signature idea.** One ownable idea a visitor would describe to someone else afterwards ("the page where you take the watch apart", "the site set like a 1970s train timetable"). Derive it from the product's character, material, data, or history, never from a trend. Every project gets one; small projects get a small one (a type treatment, a cursor, one illustration hand).
+3. **Change at least three axes from the median**: composition strategy, typography, color source, imagery type, navigation model, motion role, use of 3D. Changing only the accent color is not a direction.
+4. **Make at least one explored direction unconventional**: immersive 3D, kinetic type, interactive object, print-inspired, raw, or maximalist, when the context allows. Recommend it if it serves the intent; keep it as an alternative if not.
+5. **Place the boldness where risk is low.** Marketing pages, launches, portfolios, brand moments, empty states, onboarding, and 404s can be experimental. Core task flows in daily-use tools keep familiar controls and navigation; their signature lives in type, data visualization, and detail.
+6. **Check it is still usable**: readable text, findable navigation, working on a phone, reduced motion honored, content in HTML. Distinctive and broken is not a win.
+
+Signals you stayed at the median: you could swap the logo and ship it for a competitor; the hero could be any SaaS; every section has the same width and rhythm; the most memorable thing is the gradient.
+
 
 ## Step 5: Explore distinct directions (when useful)
 
@@ -82,6 +103,8 @@ Write the result as rules an engineer can implement without guessing. Replace ad
 - **Ignoring the existing brand** because a new look seemed more exciting.
 - **Distinctive at the expense of usable**: novel navigation or illegible type in a tool people must use daily.
 - **Imitation**: reproducing a famous site's composition. Extract the principle, not the layout.
+- **Timid median**: everything technically clean and correct, nothing anyone remembers. No signature idea.
+- **Novelty without a source**: an experimental look or a 3D scene that has nothing to do with the product; it is just a newer template.
 
 ## Example (abbreviated)
 
