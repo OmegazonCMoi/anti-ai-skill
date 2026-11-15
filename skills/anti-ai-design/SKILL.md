@@ -1,6 +1,6 @@
 ---
 name: anti-ai-design
-description: Design methodology, critique framework, and implementation guide for distinctive, intentional, accessible digital interfaces. Use when designing or redesigning UI or UX, building websites, landing pages, web apps, dashboards, macOS, iOS, iPadOS, Android or cross-platform desktop apps, implementing frontend interfaces, defining an art direction or design system, or critiquing and auditing an interface, screenshot, or UI code. Replaces generic AI-generated patterns (eyebrow badge + headline + paragraph sections, repetitive icon card grids, bordered and shadowed containers everywhere, default purple gradients) with content-driven composition, while preserving existing design systems and functionality. Not for backend-only, data-pipeline, or non-visual tasks.
+description: Design methodology, critique framework, and implementation guide for distinctive, intentional, accessible digital interfaces. Use when designing or redesigning UI or UX, building websites, landing pages, web apps, dashboards, macOS, iOS, iPadOS, Android or cross-platform desktop apps, implementing frontend interfaces, defining an art direction or design system, or critiquing and auditing an interface, screenshot, or UI code. Replaces generic AI-generated patterns (eyebrow badge + headline + paragraph sections, repetitive icon card grids, bordered and shadowed containers everywhere, default purple gradients) with content-driven composition, while preserving existing design systems and functionality. Also use for anti-slop requests and French phrasings such as anti-slop, ça fait fait par IA, design générique, audit de design, vibe-codé. Not for backend-only, data-pipeline, or non-visual tasks.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -152,6 +152,7 @@ Do **not** load everything. Read SKILL.md, then load only what the task needs, b
 | Defining a visual identity | [workflows/define-art-direction](workflows/define-art-direction.md), [art-direction](references/art-direction.md), [typography](references/typography.md), [color-and-surfaces](references/color-and-surfaces.md) |
 | Design system or tokens | [design-systems](references/design-systems.md), [templates/design-system-spec](templates/design-system-spec.md) |
 | Visual audit (screenshot, live UI) | [anti-patterns](references/anti-patterns.md), [design-critique](references/design-critique.md), [workflows/audit-interface](workflows/audit-interface.md), [workflows/final-quality-gate](workflows/final-quality-gate.md) |
+| Anti-slop request, "design générique", Build or Audit mode | [anti-slop](references/anti-slop.md), [anti-patterns](references/anti-patterns.md) |
 | Code-level audit | [workflows/audit-existing-code](workflows/audit-existing-code.md), [anti-patterns](references/anti-patterns.md), [accessibility](references/accessibility.md) |
 | Redesign in an existing codebase | Inspect the repository first, then [workflows/improve-existing-interface](workflows/improve-existing-interface.md) and [workflows/implement-interface](workflows/implement-interface.md) |
 | New product from scratch | [workflows/design-from-scratch](workflows/design-from-scratch.md), [templates/design-brief](templates/design-brief.md) |
@@ -183,3 +184,12 @@ End with a short report:
 5. **Not verified / assumptions**: what remains untested, inferred, or out of scope; any proposals beyond the request, labeled as proposals.
 
 Never report a check, a source verification, or a platform behavior you did not actually confirm.
+
+## 16. Anti-slop suppression rules and Build / Audit modes
+
+[references/anti-slop.md](references/anti-slop.md) lists, in French, the "AI / Claude default" tells to remove (A. titres, B. typographie, C. couleurs, D. composants et mise en page, E. texte, F. finitions), one line each: « Interdit : X. Exception : Y. » They are defaults to remove, not absolute bans: each is allowed when the brief explicitly justifies it. Swapping one default for another (purple → cream + serif + terracotta) fixes nothing.
+
+- **Build mode**: before writing code for a new page, write down a visual direction, at most two font families with the reason, a palette with the reason, and the page structure, each justified by the brief; ask the user for a reference image or site.
+- **Audit mode**: scan existing Tailwind/CSS/JSX/HTML against A–F and report pattern, file:line, and proposed fix. Do not rewrite anything without the user's approval.
+
+Open conflicts between this list and the rest of the skill are listed at the end of that file; they are not resolved here.
